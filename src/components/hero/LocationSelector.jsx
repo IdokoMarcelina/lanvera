@@ -6,17 +6,17 @@ const LocationSelector = () => {
     const [lga, setLga] = useState('')
 
   return (
-    <div className='flex gap-10'>
+    <div className='flex gap-15 lg:gap-10 items-center'>
 
-        <div>
-            <p className='font-meduim mb-1 text-gray-400'>Loaction</p>
+        <div className='lg:grid'>
+            <p className='font-meduim mb-1 text-[13px] text-gray-400'>Loaction</p>
             
             <select value={region}
                     onChange={(e)=> {
                         setRegion(e.target.value);
                         setLga('')
                     }}
-                    className='border-0 border-b border-black border-solid'
+                    className='lg:w-[190px] w-[140px] text-[12px]  lg:text-[15px] border-0 border-b border-black border-solid '
             >
 
                 <option value="">Select your Loaction</option>
@@ -33,15 +33,15 @@ const LocationSelector = () => {
 
 
         <div>
-            <p className='text-gray-400'>Sub Location</p>
+            <p className='text-gray-400 text-[13px]'>Sub Location</p>
 
             <select value={lga}
                     onChange={(e)=>setLga(e.target.value)}
                     disabled={!region}
-                    className={`border-0 border-b border-black border-solid ${ !region? 'bg-gray-100 text-gray-400'  : 'text-gray-300' }`}
+                    className={`lg:w-[190px] w-[140px] text-[12px] lg:text-[15px] border-0 border-b border-black border-solid  ${ !region? ' text-gray-400'  : 'text-black' }`}
             
             >
-                <option value="">{region? 'Select your LGA' : 'Select a State first'}</option>
+                <option value="">{region? 'Select your city' : 'Select a State first'}</option>
                 {
                     region && 
                         Location[region].map((area)=> (

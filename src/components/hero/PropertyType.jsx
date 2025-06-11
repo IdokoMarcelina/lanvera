@@ -25,12 +25,12 @@ const PropertyType = () => {
       ]
     
   return (
-    <div className='flex gap-10'>
+    <div className='flex gap-10 lg:gap-10'>
         
         <div>
-            <p className='text-gray-400'>Property Type</p>
+            <p className='text-gray-400 text-[13px]'>Property Type</p>
 
-            <select className='border-0 border-b border-black border-solid' >
+            <select className='w-[140px] text-[12px] lg:text-[15px] lg:w-[190px] border-0 border-b border-black border-solid' >
                 <option value="">Select Property Type</option>
                 {
                     properties.map((type)=>(
@@ -44,9 +44,9 @@ const PropertyType = () => {
 
 
         <div>
-            <p className='text-gray-400'>Price Range</p>
+            <p className='text-gray-400 text-[13px]'>Price Range</p>
 
-            <select className='border-0 border-b border-black border-solid'>
+            <select className='w-[140px] text-[12px] lg:text-[15px] lg:w-[190px] border-0 border-b border-black border-solid'>
                 <option value="">Choose Price range</option>
                 {
                     range.map((price)=> (
