@@ -13,10 +13,10 @@ const Hero = () => {
         
         <Navbar/>
       
-        <h1 className='text-white lg:text-[30px] text-[29px] font-bold absolute top-[489px] lg:top-[329px] left-[52px] lg:left-[490px]'>Welcome to Lanvera</h1>
+        <h1 className='text-white lg:text-[30px] text-[29px] font-bold absolute top-[479px] lg:top-[329px] left-[52px] lg:left-[490px]'>Welcome to Lanvera</h1>
         <Status />
-        <div className="absolute top-[597px] lg:top-[432px] left-1/2 transform -translate-x-1/2 w-full max-w-5xl px-1 lg:px-4 ">
-            <div className="bg-white rounded-[12px] p-3 shadow-md flex flex-col md:flex-row gap-10 items-center justify-center">
+        <div className="absolute top-[587px] lg:top-[432px] left-1/2 transform -translate-x-1/2 w-full max-w-5xl px-1 lg:px-4 ">
+            <div className="bg-white rounded-[12px] p-3 shadow-md flex flex-col md:flex-row gap-6 lg:gap-10 items-center justify-center">
               <LocationSelector />
               <PropertyType />
               <button className="bg-[#d93e00] block place-items-center  lg:hidden  w-[200px] text-white  rounded-[4px]">
