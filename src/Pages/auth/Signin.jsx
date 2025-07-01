@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash, FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
+import toast from 'react-hot-toast';
+import { useAuth } from '../../context/AuthContext'; // if you're using auth context
 
 const Signin = () => {
   const [email, setEmail] = useState('');
@@ -8,22 +10,33 @@ const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const { login } = useAuth(); 
+
   const isFormValid = email.trim() !== '' && password.trim() !== '';
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isFormValid) return;
+
+    if (!isFormValid) {
+      toast.error("Please fill in both fields.");
+      return;
+    }
 
     setLoading(true);
 
-    setTimeout(() => {
+    try {
+      await login({ email, password }); 
+      toast.success("Login successful!");
+      // allows
+    } catch (error) {
+      toast.error(error?.message || "Invalid credentials.");
+    } finally {
       setLoading(false);
-      console.log('Signed in with:', { email, password });
-    }, 2000);
+    }
   };
 
   return (
-    <div className='w-[330px] lg:w-[450px] h-[509px] p-8 ml-5 mb-10 mr-10 shadow-lg'>
+    <div className='w-[330px] lg:w-[450px] h-auto p-8 ml-5 mb-10 mr-10 shadow-lg'>
       <h5 className='font-bold text-[20px]'>Sign in</h5>
       <p className='text-[12px] mb-5'>Don't have an account? <span className='text-[#d93e00]'> sign up</span></p>
 

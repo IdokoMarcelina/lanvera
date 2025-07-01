@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Navbar from '../Navbar'
-import hero from '../../assets/hero.png'
+import hero from '../../assets/newhero.png'
 import LocationSelector from './LocationSelector'
 import Status from './Status'
 import PropertyType from './PropertyType'
