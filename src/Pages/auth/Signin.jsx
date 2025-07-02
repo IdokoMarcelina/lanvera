@@ -3,6 +3,7 @@ import { FaEye, FaEyeSlash, FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext'; // if you're using auth context
+import {useNavigate} from 'react-router-dom'
 
 const Signin = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +12,7 @@ const Signin = () => {
   const [loading, setLoading] = useState(false);
 
   const { login } = useAuth(); 
+  const navigate = useNavigate()
 
   const isFormValid = email.trim() !== '' && password.trim() !== '';
 
@@ -27,6 +29,7 @@ const Signin = () => {
     try {
       await login({ email, password }); 
       toast.success("Login successful!");
+      navigate('/')
       // allows
     } catch (error) {
       toast.error(error?.message || "Invalid credentials.");
@@ -36,7 +39,7 @@ const Signin = () => {
   };
 
   return (
-    <div className='w-[330px] lg:w-[450px] h-auto p-8 ml-5 mb-10 mr-10 shadow-lg'>
+    <div className='w-[330px] lg:w-[450px] h-auto p-8 ml-5 mb-10 mr-10 bg-white shadow-lg'>
       <h5 className='font-bold text-[20px]'>Sign in</h5>
       <p className='text-[12px] mb-5'>Don't have an account? <span className='text-[#d93e00]'> sign up</span></p>
 

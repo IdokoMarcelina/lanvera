@@ -6,9 +6,16 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem('user');
-    // return storedUser ? JSON.parse(storedUser) : null;
+    try {
+      const storedUser = localStorage.getItem('user');
+      return storedUser ? JSON.parse(storedUser) : null;
+    } catch (err) {
+      console.error("Failed to parse stored user", err);
+      localStorage.removeItem('user'); // Optional cleanup
+      return null;
+    }
   });
+  
 
   // Signup user
   const signup = async (formData) => {
