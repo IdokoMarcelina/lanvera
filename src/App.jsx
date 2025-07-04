@@ -1,31 +1,26 @@
-
-import { Toaster } from 'react-hot-toast'
-import './App.css'
-import LandingPage from './Pages/LandingPage'
-import { Route, Routes,  } from 'react-router-dom'
-import {ToastContainer} from 'react-toastify'
-import VerifyOtp from './Pages/auth/VerifyOtp'
-import Signup from './Pages/auth/Signup'
-import Signin from './Pages/auth/Signin'
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import LoggedinNavbar from './components/LoggedinNavbar';
+import LandingPage from './Pages/LandingPage';
+import Signin from './pages/auth/Signin';
+import Signup from './Pages/auth/Signup';
+import Home from './Pages/Home';
+import { useAuth } from './context/AuthContext';
+import Faq from './Pages/faq/Faq';
 
 function App() {
-
+ 
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
-
-        <Routes>
-            <Route path='/' element={<LandingPage/>} />
-            <Route path='/signup' element={<Signup/>}/>
-            <Route path="/verify-email/:token" element={<VerifyOtp />} />
-            <Route path='/login' element={<Signin/>}/>
-
-            
-        </Routes>
-    
-
+       <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/faq" element={<Faq />} />
+        {/* <Route path="/nav" element={<LoggedinNavbar />} /> */}
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

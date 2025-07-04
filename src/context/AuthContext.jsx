@@ -1,23 +1,40 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { Navigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(() => {
-    try {
-      const storedUser = localStorage.getItem('user');
-      return storedUser ? JSON.parse(storedUser) : null;
-    } catch (err) {
-      console.error("Failed to parse stored user", err);
-      localStorage.removeItem('user'); // Optional cleanup
-      return null;
-    }
-  });
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (err) {
+        localStorage.removeItem('user');
+      }
+    }
+    setLoading(false);
+  }, []);
+  
+ 
+  const useRedirect = ()=>{
+    try {
+      if(user){
+        Navigate()
+      }
+    } catch (error) {
+      
+    }
+  }
 
-  // Signup user
+ 
+
+
   const signup = async (formData) => {
     try {
       const res = await axios.post('https://lanvera.onrender.com/auth/signup', formData);
@@ -48,6 +65,11 @@ export const AuthProvider = ({ children }) => {
     }
   }; 
 
+  const handleGoogleLogin = () => {
+    window.location.href = 'https://lanvera.onrender.com/auth/login-google';
+
+  };
+
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -56,8 +78,9 @@ export const AuthProvider = ({ children }) => {
     toast.success("Logged out successfully!");
   };
 
+
   return (
-    <AuthContext.Provider value={{ user, signup, login, logout }}>
+    <AuthContext.Provider value={{ user, signup, login, logout, handleGoogleLogin }}>
       {children}
     </AuthContext.Provider>
   );
